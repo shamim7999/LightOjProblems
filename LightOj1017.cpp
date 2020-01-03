@@ -24,19 +24,16 @@ ll n,k,w,kk, a[110], dp[105][105];
 
 ll func(ll i, ll moves)
 {
-    if(i>=n || moves > k) return 0;
+    if(i == n || moves > k) return 0;
     ll &ret=dp[i][moves];
     if(ret!=-1) return ret;
 
-    ll a1=1, a2=1,x=i+1;
-    for(ll j=i+1; j<n; j++){
+    ll a1=1, a2=1,j;
+    for(j=i+1; j<n; j++){
         if(abs(a[i]-a[j])<=w) a1++;
-        else{
-            x=j;
-            break;
-        }
+        else break;
     }
-    a1+=func(x,moves+1);
+    a1+=func(j,moves+1);
     a2=func(i+1,moves);
     return ret=max(a1,a2);
 }
@@ -44,7 +41,7 @@ ll func(ll i, ll moves)
 void solve()
 {
     scanf("%lld %lld %lld", &n, &w, &k);
-    for(ll i=0,x; i<n; i++) cin >> x >> a[i]; /// No need to use X-Axis, We only have to deal with Y-Axis.
+    for(ll i=0,x; i<n; i++) cin >> x >> a[i]; /// No need to use X-Axis. We have to deal with only Y-Axis..
     sort(a,a+n);
     memo(dp,-1);
     printf("Case %lld: %lld\n", ++kk, func(0,1));

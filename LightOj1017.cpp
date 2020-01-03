@@ -24,7 +24,7 @@ ll n,k,w,kk, a[110], dp[105][105];
 
 ll func(ll i, ll moves)
 {
-    if(i == n || moves > k) return 0;
+    if(i == n || moves == k) return 0;
     ll &ret=dp[i][moves];
     if(ret!=-1) return ret;
 
@@ -41,10 +41,10 @@ ll func(ll i, ll moves)
 void solve()
 {
     scanf("%lld %lld %lld", &n, &w, &k);
-    for(ll i=0,x; i<n; i++) cin >> x >> a[i]; /// No need to use X-Axis. We have to deal with only Y-Axis..
+    for(ll i=0,x; i<n; i++) cin >> x >> a[i];
     sort(a,a+n);
     memo(dp,-1);
-    printf("Case %lld: %lld\n", ++kk, func(0,1));
+    printf("Case %lld: %lld\n", ++kk, func(0,0));
 
 }
 

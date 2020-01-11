@@ -1,4 +1,4 @@
-clude<bits/stdc++.h>
+#include<bits/stdc++.h>
 using namespace std;
 #define dd double
 #define pb push_back

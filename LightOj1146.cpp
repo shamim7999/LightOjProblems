@@ -98,4 +98,4 @@ int main()
    return 0;
 }
 
-/// I took help from  --->  https://github.com/mazedrupok, except line 77.
+/// I took help from  --->  https://github.com/mazedrupok

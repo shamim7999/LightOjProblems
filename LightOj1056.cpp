@@ -6,7 +6,7 @@ using namespace std;
 #define ll long long
 #define ull unsigned long long
 #define ld long double
-#define mx 200005
+#define mx 1009
 #define mod 1000000007
 #define fr first
 #define se second
@@ -23,45 +23,43 @@ using namespace std;
 #define Ones(x) __builtin_popcount(x)
 #define trailingZero(x) __builtin_ctz(x)
 #define len(ele) (ele).size()
- 
+
 template <typename... T>
 void get(T &... args)
 {
     ((cin >> args), ...);
 }
- 
+
 template <typename... T>
 void Get(T &... args) { ((getline(cin, args)), ...); }
- 
+
 template <typename... T>
 void print(T &&... args) { ((cout << args << ""), ...); }
- 
+
 bool check(ll n, ll pos) { return (n & (1 << pos)); }
 bool Set(ll n, ll pos) { return (n | (1 << pos)); }
 ld LOG(ld b, ld e) { return log(b) / log(e); }
 ld rad(ld x) { return ((ld)PI * x) / 180.0; }
- 
+
 /// Code Starts From Here.............................................///
- 
-int tc = 1;
-ll a[mx], pre[mx];
- 
+
+int tc = 1, k, n;
+ll a[mx];
+
+
+
 void solve(int kk)
 {
-    ld a,b,r,S,x;
-    char ch;
-    get(a,ch,b);
-    r = sqrtl(a*a+b*b)/2;
-    ld ang;
-    ang = acos((2*r*r-b*b)/(2.0*r*r));
-    S = r*ang;
-    x = 200.0/(a+S);
-    per(14);
-    print("Case ", kk, ": ", a*x, " ", b*x);
-    End;
- 
+     ld a,b,c1,c2,ang,r,s;
+     char ch;
+     get(a,ch,b);
+     c1 = acos((a*a-b*b)/(a*a+b*b));
+     c2 = sqrtl(a*a+b*b)/2.0;
+     ld x = 200.0/((c1*c2)+a);
+     per(14);
+     cout << "Case " << kk << ": " << a*x << " " << b*x << "\n";
 }
- 
+
 int main()
 {
     //freopen("text.txt", "r", stdin);
@@ -72,6 +70,7 @@ int main()
     scanf("%d", &tc);
     while (++kk <= tc)
         solve(kk);
- 
+
     return 0;
 }
+

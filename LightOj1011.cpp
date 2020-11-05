@@ -1,55 +1,52 @@
 #include<bits/stdc++.h>
 using namespace std;
-#define dd double
-#define pb push_back
-#define pf push_front
-#define popb pop_back
-#define popf pop_front
-#define ll long long
-#define ull unsigned long long
-#define ld long double
-#define mx 200005
-#define mod 1000000007
-#define fr first
-#define cti(a) (a-48)
-#define itc(a) char(a+48)
-#define se second
-#define End cout<<"\n"
-#define fast ios_base::sync_with_stdio(false);cin.tie(0);cout.tie(0)
-#define memo(Array,val) memset(Array, val, sizeof Array)
-#define check(n, pos) (n & (1<<pos))
-#define Set(n, pos) (n | (1<<pos))
- 
-ll kk,n;
-ll dp[17][1<<17], a[20][20];
- 
-ll func(ll i, ll mask)
+
+#define mx 17
+
+int dp[mx][(1<<17)-1], cost[mx][mx], n;
+
+int func(int i, int mask)
 {
-    if(i>=n) return 0;
-    ll &ret = dp[i][mask];
-    if(ret!=-1) return ret;
- 
-    ll sum=-1;
-    for(ll j=0; j<n; j++) if(!check(mask,j)) sum = max(sum,a[i][j]+func(i+1,Set(mask,j)));
-    return ret=sum;
-}
- 
-void solve()
-{
-    scanf("%lld", &n);
-    for(ll i=0; i<n; i++){
-        for(ll j=0; j<n; j++){
-            scanf("%lld", &a[i][j]);
+    if(i == n)
+        return 0;
+    int &ret = dp[i][mask];
+    if(ret!=-1)
+        return ret;
+    int ans=-1e9;
+
+    for(int j=0; j<n; j++){
+        bool ok = (mask & (1<<j));
+        if(ok){
+            ans = max(ans, cost[i][j] + func(i+1, (mask ^ (1<<j))));
         }
     }
-    memo(dp,-1);
-    printf("Case %lld: %lld\n", ++kk, func(0,0));
+    return ret = ans;
 }
- 
+
+void solve(int tc)
+{
+    memset(dp, -1, sizeof dp);
+    
+    cin >> n;
+    
+    //swap(r, c);
+    for(int i=0; i<n; i++){
+        for(int j=0; j<n; j++)
+            cin >> cost[i][j];
+    }
+    cout << "Case " << tc << ": " << func(0, (1<<n)-1) << "\n";
+
+}
+
 int main()
 {
-   ll t;
-   scanf("%lld", &t);
-   while(t--) solve();
-   return 0;
+    ios_base::sync_with_stdio(0);
+    cin.tie(0);
+
+    int t=1;
+    cin >> t;
+    for(int i=1; i<=t; i++)
+        solve(i);
+    return 0;
+
 }

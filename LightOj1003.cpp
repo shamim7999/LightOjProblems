@@ -102,16 +102,18 @@ void solve(int kk)
         }
     }
     --cnt;
-    printf("Case %d: ", kk);
-    cnt == node ? printf("Yes\n") : printf("No\n");
+    //printf("Case %d: ", kk);
+    cout << "Case " << kk << ": ";
+    cnt == node ? cout << "Yes\n" : cout << "No\n";
 }
 
 int main()
 {
-    //fast;
+    fast;
 	int t,kk=0;
 	t=1;
-	scanf("%d", &t);
+	cin >> t;
+	//scanf("%d", &t);
 	while(++kk<=t) solve(kk);
 	return 0;
 }

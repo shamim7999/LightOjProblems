@@ -51,9 +51,9 @@ void dfs2(int u)
 void solve(int kk)
 {
     clr();
-    scanf("%d %d", &node, &edge);
-
-    for(int i=0,x,y; i<edge; i++) scanf("%d %d", &x, &y), v1[x].pb(y), yes[x]=1, yes[y]=1;
+    //scanf("%d %d", &node, &edge);
+    cin >> node >> edge;
+    for(int i=0,x,y; i<edge; i++) cin >> x >> y, v1[x].pb(y), yes[x]=1, yes[y]=1;
 
     for(int i=0; i<=node; i++) if(!b1[i] && yes[i]) dfs1(i);
 
@@ -68,16 +68,18 @@ void solve(int kk)
 
 
     for(int i=1; i<=node; i++) cnt+=(b1[i] == 0);
-
-    printf("Case %d: %d\n", kk, cnt);
+    cout << "Case " << kk << ": " << cnt << "\n";
+    //printf("Case %d: %d\n", kk, cnt);
 }
 
 int main()
 {
     //freopen("text.txt", "r", stdin);
+    fast;
 	int t,kk=0;
 	t=1;
-	scanf("%d", &t);
+	cin >> t;
+	//scanf("%d", &t);
 	while(++kk<=t) solve(kk);
 	return 0;
 }

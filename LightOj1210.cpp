@@ -116,17 +116,6 @@ void dfs3(int u)
     }
 }
 
-void dfs4(int u)
-{
-    if(b1[u])
-         return;
-    b1[u] = 1;
-    
-    for(auto child : vv[u]){
-        dfs4(child);
-    }
-}
-
 void solve(int kk)
 {
     clr();
@@ -136,8 +125,6 @@ void solve(int kk)
 
     for(int i=0,x,y; i<edge; i++){
         cin >> x >> y, v1[x].pb(y), v2[y].pb(x), yes[x]=1, yes[y]=1;
-        //make_set(x);
-        //make_set(y);
     }
     for(int i=0; i<=node; i++){
         make_set(i);
@@ -167,34 +154,21 @@ void solve(int kk)
             dfs3(i);
     }
 
-    b1.reset();
-    for(int i=1; i<=node; i++){
-        if(!b1[find_set(i)]){
-            ++cn;
-            dfs4(find_set(i));
-        }
-    }
-    
-    //cout << find_set(2) << "\n";
-
+   
     vector < int > ss;
-    //set < int > ss;
     for(int i=1; i<=node; i++){
         ss.push_back(find_set(i));
-        //ss.insert(find_set(i));
     }
     sort(ss.begin(), ss.end());
     ss.erase(unique(ss.begin(), ss.end()), ss.end());
 
 
     for(auto i : ss){
-        //cout << i << " ";    
         for(auto it : vv[i])
             in[it]++;
         if(!vv[i].empty())
             out[i]++;
     }
-    //return;
     int a1 = 0, a2 = 0;
     for(auto it : ss){
         a1+=(in[it] == 0), a2+=(out[it] == 0);

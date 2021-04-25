@@ -1,3 +1,6 @@
+/*
+Algorithm : DSU, Strongly Connected Components
+*/
 #include<bits/stdc++.h>
 using namespace std;
 #define dd double
